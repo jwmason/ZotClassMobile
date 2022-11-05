@@ -2,7 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:dropdown_search/dropdown_search.dart';
-
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+// http://127.0.0.1:5000/departments
 void main() {
   runApp(const MyApp());
 }
@@ -52,6 +54,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final apiURL = "http://127.0.0.1:5000/";
+  List<String> depList = ["Department"];
+  List<String> termList = ["Term"];
   String term = "Term";
   String dep = "Department";
   final myController1 = TextEditingController();
@@ -71,6 +76,32 @@ class _MyHomePageState extends State<MyHomePage> {
     super.dispose();
   }
 
+  void getDep() async {
+    var response = http.get(Uri.parse("${apiURL}departments"));
+    response.then((value) {
+      List<dynamic> temp = jsonDecode(value.body)['json_list'];
+      setState(() {
+      depList = List<String>.from(temp);
+      });
+    });
+   }
+
+  void getTerm() async {
+    var response = http.get(Uri.parse("${apiURL}terms"));
+    response.then((value) {
+      List<dynamic> temp = jsonDecode(value.body);
+      setState(() {
+      termList = List<String>.from(temp);
+      });
+    });
+  }
+
+  @override
+  initState() {
+    super.initState();
+    getDep();
+    getTerm();
+  }
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -95,7 +126,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 popupProps: const PopupProps.menu(
                     showSelectedItems: true,
                 ),
-                items: const ["Department", "ICS", "ART", "WRITING", "MATH", "EECS", "DANCE", "DRAMA", "POLISCI"],
+                items: depList,
                 selectedItem: "Department",
                 onChanged:(selectedItem) {
                   setState(() {
@@ -113,7 +144,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 popupProps: const PopupProps.menu(
                     showSelectedItems: true,
                 ),
-                items: const ["Term", "2023 Winter Quarter", "2023 Fall Quarter", "2023 Spring Quarter"],
+                items: termList,
                 selectedItem: "Term",
                 onChanged: (selectedItem) {
                   setState(() {
