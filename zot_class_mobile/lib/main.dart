@@ -58,25 +58,21 @@ class MyHomePage extends StatefulWidget {
 // Dropdown for Term
 
     List<DropdownMenuItem<String>> get dropdownTermItems{
-  List<DropdownMenuItem<String>> menuItems = [
-    const DropdownMenuItem(value: "Term", child: Text("Term")),
-    const DropdownMenuItem(value: "Winter2023", child: Text("2023 Winter Quarter")),
-    const DropdownMenuItem(value: "Fall2023", child: Text("2023 Fall Quarter")),
-    const DropdownMenuItem(value: "Spring2023", child: Text("2023 Spring Quarter")),
-
-  ];
+        List<String> strings = ["Term", "2023 Winter Quarter", "2023 Fall Quarter", "2023 Spring Quarter"];
+  List<DropdownMenuItem<String>> menuItems = [];
+  for(var i = 0; i < strings.length; i++){
+        menuItems.add(DropdownMenuItem(value: strings[i], child: Text(strings[i])));
+    }
   return menuItems;
 }
 
 // Dropdown for Dep
 List<DropdownMenuItem<String>> get dropdownDepItems{
-  List<DropdownMenuItem<String>> menuItems = [
-    const DropdownMenuItem(value: "Department", child: Text("Department")),
-    const DropdownMenuItem(value: "ICS", child: Text("ICS")),
-    const DropdownMenuItem(value: "ART", child: Text("ART")),
-    const DropdownMenuItem(value: "WRITING", child: Text("WRITING")),
-
-  ];
+  List<String> strings = ["Department", "ICS", "ART", "WRITING", "MATH", "EECS", "DANCE", "DRAMA", "POLISCI"];
+  List<DropdownMenuItem<String>> menuItems = [];
+  for(var i = 0; i < strings.length; i++){
+        menuItems.add(DropdownMenuItem(value: strings[i], child: Text(strings[i])));
+    }
   return menuItems;
 }
 
@@ -150,7 +146,7 @@ class _MyHomePageState extends State<MyHomePage> {
           // horizontal).
 
 
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             DropdownButton(
             value: selectedValueTerm,
