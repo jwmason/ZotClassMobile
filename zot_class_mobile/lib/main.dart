@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 
@@ -48,42 +50,30 @@ class MyHomePage extends StatefulWidget {
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
-// class DropdownItem extends StatefulWidget {
-//   const DropdownItem({super.key});
-
-//   @override
-//   // ignore: library_private_types_in_public_api
-//   _DropdownItemState createState() => _DropdownItemState();
-// }
-
-
-// Dropdown for CC
-// List<DropdownMenuItem<String>> get dropdownCCItems{
-//   List<DropdownMenuItem<String>> menuItems = [
-//     const DropdownMenuItem(value: "Course Code", child: Text("Course Code")),
-//     const DropdownMenuItem(value: "ICS", child: Text("ICS")),
-//     const DropdownMenuItem(value: "ART", child: Text("ART")),
-//     const DropdownMenuItem(value: "WRITING", child: Text("WRITING")),
-
-//   ];
-//   return menuItems;
-// }
-
-    // const DropdownMenuItem(value: "Department", child: Text("Department")),
-    // const DropdownMenuItem(value: "Course Code", child: Text("Course Code")),
-    // const DropdownMenuItem(value: "Course Title", child: Text("Course Title")),
-    // const DropdownMenuItem(value: "USA", child: Text("USA")),
-    // const DropdownMenuItem(value: "Canada", child: Text("Canada")),
-    // const DropdownMenuItem(value: "Brazil", child: Text("Brazil")),
-    // const DropdownMenuItem(value: "England", child: Text("England")),
-
 
 class _MyHomePageState extends State<MyHomePage> {
 
-  String selectedValueTerm = "Term";
-  String selectedValueDep = "Department";
-  String selectedValueCC= "Course Code";
-  String selectedValueCT = "Course Title";
+    final myController1 = TextEditingController();
+    final myController2 = TextEditingController();
+    final ButtonStyle raisedButtonStyle = ElevatedButton.styleFrom(
+  minimumSize: Size(200, 80),
+  padding: EdgeInsets.symmetric(horizontal: 16),
+  shape: const RoundedRectangleBorder(
+    borderRadius: BorderRadius.all(Radius.circular(4)),
+  ));
+
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is disposed.
+    myController1.dispose();
+    myController2.dispose();
+    super.dispose();
+  }
+
+  // String selectedValueTerm = "Term";
+  // String selectedValueDep = "Department";
+  // String selectedValueCC= "Course Code";
+  // String selectedValueCT = "Course Title";
 
     // setState(() {
     //   // This call to setState tells the Flutter framework that something has
@@ -147,14 +137,31 @@ class _MyHomePageState extends State<MyHomePage> {
                 onChanged: print,
                 selectedItem: "Term",
             ),
+            const Text('\n'),
+            TextField(
+            decoration: InputDecoration(
+              border: OutlineInputBorder(),
+              hintText: 'Course Code:',
+            ),
+            controller: myController1
+          ),
+          const Text('\n'),
+          TextField(
+            decoration: InputDecoration(
+              border: OutlineInputBorder(),
+              hintText: 'Course Name:',
+            ),
+            controller: myController2
+          ),
+          const Text('\n'),
+          ElevatedButton(
+          style: raisedButtonStyle,
+          onPressed: () { },
+          child: Text('Search', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
+        ),
           ],
         ),
       ),
-      floatingActionButton: const FloatingActionButton(
-        onPressed: null,
-        tooltip: "Search",
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
