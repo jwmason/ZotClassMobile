@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:dropdown_search/dropdown_search.dart';
 
 void main() {
   runApp(const MyApp());
@@ -55,26 +56,6 @@ class MyHomePage extends StatefulWidget {
 //   _DropdownItemState createState() => _DropdownItemState();
 // }
 
-// Dropdown for Term
-
-    List<DropdownMenuItem<String>> get dropdownTermItems{
-        List<String> strings = ["Term", "2023 Winter Quarter", "2023 Fall Quarter", "2023 Spring Quarter"];
-  List<DropdownMenuItem<String>> menuItems = [];
-  for(var i = 0; i < strings.length; i++){
-        menuItems.add(DropdownMenuItem(value: strings[i], child: Text(strings[i])));
-    }
-  return menuItems;
-}
-
-// Dropdown for Dep
-List<DropdownMenuItem<String>> get dropdownDepItems{
-  List<String> strings = ["Department", "ICS", "ART", "WRITING", "MATH", "EECS", "DANCE", "DRAMA", "POLISCI"];
-  List<DropdownMenuItem<String>> menuItems = [];
-  for(var i = 0; i < strings.length; i++){
-        menuItems.add(DropdownMenuItem(value: strings[i], child: Text(strings[i])));
-    }
-  return menuItems;
-}
 
 // Dropdown for CC
 // List<DropdownMenuItem<String>> get dropdownCCItems{
@@ -148,42 +129,24 @@ class _MyHomePageState extends State<MyHomePage> {
 
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            DropdownButton(
-            value: selectedValueTerm,
-            items: dropdownTermItems,
-            onChanged: (String? newValue){
-                setState(() {
-                  selectedValueTerm = newValue!;
-                });
-              }
+            const Text('\n\n'),
+            DropdownSearch<String>(
+                popupProps: const PopupProps.menu(
+                    showSelectedItems: true,
+                ),
+                items: const ["Department", "ICS", "ART", "WRITING", "MATH", "EECS", "DANCE", "DRAMA", "POLISCI"],
+                onChanged: print,
+                selectedItem: "Department",
             ),
-            DropdownButton(
-            value: selectedValueDep,
-            items: dropdownDepItems,
-            onChanged: (String? newValue){
-                setState(() {
-                  selectedValueDep = newValue!;
-                });
-              }
+            const Text('\n'),
+            DropdownSearch<String>(
+                popupProps: const PopupProps.menu(
+                    showSelectedItems: true,
+                ),
+                items: const ["Term", "2023 Winter Quarter", "2023 Fall Quarter", "2023 Spring Quarter"],
+                onChanged: print,
+                selectedItem: "Term",
             ),
-            //             DropdownButton(
-            // value: selectedValueCC,
-            // items: dropdownItems,
-            // onChanged: (String? newValue){
-            //     setState(() {
-            //       selectedValueTerm = newValue!;
-            //     });
-            //   }
-            // ),
-            // DropdownButton(
-            // value: selectedValueCT,
-            // items: dropdownItems,
-            // onChanged: (String? newValue){
-            //     setState(() {
-            //       selectedValueCT = newValue!;
-            //     });
-            //   }
-            // ),
           ],
         ),
       ),
