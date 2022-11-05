@@ -52,10 +52,11 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
-    final myController1 = TextEditingController();
-    final myController2 = TextEditingController();
-    final ButtonStyle raisedButtonStyle = ElevatedButton.styleFrom(
+  String term = "Term";
+  String dep = "Department";
+  final myController1 = TextEditingController();
+  final myController2 = TextEditingController();
+  final ButtonStyle raisedButtonStyle = ElevatedButton.styleFrom(
   minimumSize: Size(200, 80),
   padding: EdgeInsets.symmetric(horizontal: 16),
   shape: const RoundedRectangleBorder(
@@ -69,19 +70,6 @@ class _MyHomePageState extends State<MyHomePage> {
     myController2.dispose();
     super.dispose();
   }
-
-  // String selectedValueTerm = "Term";
-  // String selectedValueDep = "Department";
-  // String selectedValueCC= "Course Code";
-  // String selectedValueCT = "Course Title";
-
-    // setState(() {
-    //   // This call to setState tells the Flutter framework that something has
-    //   // changed in this State, which causes it to rerun the build method below
-    //   // so that the display can reflect the updated values. If we changed
-    //   // _counter without calling setState(), then the build method would not be
-    //   // called again, and so nothing would appear to happen.
-
 
   @override
   Widget build(BuildContext context) {
@@ -98,24 +86,7 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
         child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-
 
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
@@ -125,8 +96,17 @@ class _MyHomePageState extends State<MyHomePage> {
                     showSelectedItems: true,
                 ),
                 items: const ["Department", "ICS", "ART", "WRITING", "MATH", "EECS", "DANCE", "DRAMA", "POLISCI"],
-                onChanged: print,
                 selectedItem: "Department",
+                onChanged:(selectedItem) {
+                  setState(() {
+                    if(selectedItem != null) {
+                      dep = selectedItem;
+                    }
+                    else {
+                      dep = "Department";
+                    }
+                  });
+                }
             ),
             const Text('\n'),
             DropdownSearch<String>(
@@ -134,8 +114,17 @@ class _MyHomePageState extends State<MyHomePage> {
                     showSelectedItems: true,
                 ),
                 items: const ["Term", "2023 Winter Quarter", "2023 Fall Quarter", "2023 Spring Quarter"],
-                onChanged: print,
                 selectedItem: "Term",
+                onChanged: (selectedItem) {
+                  setState(() {
+                    if(selectedItem != null) {
+                      term = selectedItem;
+                    }
+                    else {
+                      term = "Term";
+                    }
+                  });
+                },
             ),
             const Text('\n'),
             TextField(
@@ -156,7 +145,17 @@ class _MyHomePageState extends State<MyHomePage> {
           const Text('\n'),
           ElevatedButton(
           style: raisedButtonStyle,
-          onPressed: () { },
+          onPressed: (){
+            if(dep != "Department" && term != "Term") {
+              print(dep);
+              print(term);
+              print(myController1.text);
+              print(myController2.text);
+            }
+            else {
+              print("no");
+            }
+          },
           child: Text('Search', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
         ),
           ],
