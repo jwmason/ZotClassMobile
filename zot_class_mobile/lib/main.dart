@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Zot Class Mobile',
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -24,13 +24,14 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Zot Class Mobile'), 
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
+  
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -46,20 +47,74 @@ class MyHomePage extends StatefulWidget {
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
+// class DropdownItem extends StatefulWidget {
+//   const DropdownItem({super.key});
+
+//   @override
+//   // ignore: library_private_types_in_public_api
+//   _DropdownItemState createState() => _DropdownItemState();
+// }
+
+// Dropdown for Term
+
+    List<DropdownMenuItem<String>> get dropdownTermItems{
+  List<DropdownMenuItem<String>> menuItems = [
+    const DropdownMenuItem(value: "Term", child: Text("Term")),
+    const DropdownMenuItem(value: "Winter2023", child: Text("2023 Winter Quarter")),
+    const DropdownMenuItem(value: "Fall2023", child: Text("2023 Fall Quarter")),
+    const DropdownMenuItem(value: "Spring2023", child: Text("2023 Spring Quarter")),
+
+  ];
+  return menuItems;
+}
+
+// Dropdown for Dep
+List<DropdownMenuItem<String>> get dropdownDepItems{
+  List<DropdownMenuItem<String>> menuItems = [
+    const DropdownMenuItem(value: "Department", child: Text("Department")),
+    const DropdownMenuItem(value: "ICS", child: Text("ICS")),
+    const DropdownMenuItem(value: "ART", child: Text("ART")),
+    const DropdownMenuItem(value: "WRITING", child: Text("WRITING")),
+
+  ];
+  return menuItems;
+}
+
+// Dropdown for CC
+// List<DropdownMenuItem<String>> get dropdownCCItems{
+//   List<DropdownMenuItem<String>> menuItems = [
+//     const DropdownMenuItem(value: "Course Code", child: Text("Course Code")),
+//     const DropdownMenuItem(value: "ICS", child: Text("ICS")),
+//     const DropdownMenuItem(value: "ART", child: Text("ART")),
+//     const DropdownMenuItem(value: "WRITING", child: Text("WRITING")),
+
+//   ];
+//   return menuItems;
+// }
+
+    // const DropdownMenuItem(value: "Department", child: Text("Department")),
+    // const DropdownMenuItem(value: "Course Code", child: Text("Course Code")),
+    // const DropdownMenuItem(value: "Course Title", child: Text("Course Title")),
+    // const DropdownMenuItem(value: "USA", child: Text("USA")),
+    // const DropdownMenuItem(value: "Canada", child: Text("Canada")),
+    // const DropdownMenuItem(value: "Brazil", child: Text("Brazil")),
+    // const DropdownMenuItem(value: "England", child: Text("England")),
+
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
 
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
+  String selectedValueTerm = "Term";
+  String selectedValueDep = "Department";
+  String selectedValueCC= "Course Code";
+  String selectedValueCT = "Course Title";
+
+    // setState(() {
+    //   // This call to setState tells the Flutter framework that something has
+    //   // changed in this State, which causes it to rerun the build method below
+    //   // so that the display can reflect the updated values. If we changed
+    //   // _counter without calling setState(), then the build method would not be
+    //   // called again, and so nothing would appear to happen.
+
 
   @override
   Widget build(BuildContext context) {
@@ -93,22 +148,53 @@ class _MyHomePageState extends State<MyHomePage> {
           // center the children vertically; the main axis here is the vertical
           // axis because Columns are vertical (the cross axis would be
           // horizontal).
+
+
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+            DropdownButton(
+            value: selectedValueTerm,
+            items: dropdownTermItems,
+            onChanged: (String? newValue){
+                setState(() {
+                  selectedValueTerm = newValue!;
+                });
+              }
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
+            DropdownButton(
+            value: selectedValueDep,
+            items: dropdownDepItems,
+            onChanged: (String? newValue){
+                setState(() {
+                  selectedValueDep = newValue!;
+                });
+              }
             ),
+            //             DropdownButton(
+            // value: selectedValueCC,
+            // items: dropdownItems,
+            // onChanged: (String? newValue){
+            //     setState(() {
+            //       selectedValueTerm = newValue!;
+            //     });
+            //   }
+            // ),
+            // DropdownButton(
+            // value: selectedValueCT,
+            // items: dropdownItems,
+            // onChanged: (String? newValue){
+            //     setState(() {
+            //       selectedValueCT = newValue!;
+            //     });
+            //   }
+            // ),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
+      floatingActionButton: const FloatingActionButton(
+        onPressed: null,
+        tooltip: "Search",
+        child: Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
