@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import './second_screen.dart';
 // http://127.0.0.1:5000/departments
 void main() {
   runApp(const MyApp());
@@ -178,10 +179,13 @@ class _MyHomePageState extends State<MyHomePage> {
           style: raisedButtonStyle,
           onPressed: (){
             if(dep != "Department" && term != "Term") {
+              Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const CoursesPage()));
               print(dep);
               print(term);
               print(myController1.text);
               print(myController2.text);
+              print(myController1.text =="");
             }
             else {
               print("no");
