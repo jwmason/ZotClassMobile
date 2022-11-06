@@ -25,8 +25,7 @@ class _CoursesPageState extends State<CoursesPage> {
 
     //sample data
   List<String> course = <String>[];
-  List<String> code = <String>['54321','55555','12345', '129381','444444','111111','222222','333333','4444444','555555',
-  '333333','099999'];
+  List<List<String>> code = <List<String>>[];
   List<String> instructors = <String>['ICS 45', 'Writing 60', 'Math 2B', 'ICS 60','EECS 31',
   'Writing 39B','Math 2D', 'CompSci 161', 'BME 12', 'BioSci 90', 'Math 2A', 'Writing 50'];
   List<String> units = <String>['54321','55555','12345', '129381','444444','111111','222222','333333','4444444','555555',
@@ -51,12 +50,22 @@ class _CoursesPageState extends State<CoursesPage> {
     response.then((value) {
       print(jsonDecode(value.body));
       var courses = [];
+      var temp = [];
+      var codeTemp = [];
+      List<List<String>> codes = [];
       for (int i = 0; i < jsonDecode(value.body).length; i++) {
         courses.add(jsonDecode(value.body)[i]['courseTitle']);
+        temp.add(jsonDecode(value.body)[i]['sections']);
+        for (int e = 0; e <jsonDecode(value.body)[i]['sections'].length; e++) {
+          codeTemp.add(jsonDecode(value.body)[i]['sections'][e]['sectionCode']);
+        }
+        codes.add(List<String>.from(codeTemp));
+        codeTemp = [];
       }
-      print(courses);
+      print(codes);
       setState(() {
       course = List<String>.from(courses);
+      code = codes;
       });
       // Do things
       // List<dynamic> temp = jsonDecode(value.body)['json_list'];
@@ -100,6 +109,11 @@ class _CoursesPageState extends State<CoursesPage> {
                 padding: const EdgeInsets.all(10),
                 itemCount: course.length,
                 itemBuilder: (BuildContext context, int index) {
+                  String codeString = "";
+                  for(String cc in code[index]) {
+                    codeString += '$cc\n';
+                  }
+                  print(codeString);
                   return Container(
                     height: 100,
                     color: Colors.blue,
@@ -135,8 +149,9 @@ class _CoursesPageState extends State<CoursesPage> {
                           onPressed: (){
                             showDialog(context: context, builder: (BuildContext context){
                               return AlertDialog(
-                                title: const Text('sample'),
-                                content: const Text('test content'),
+                                title: const Text('Sections'),
+                                // ode[index].forEach((String)"")
+                                content: Text(codeString),
                                 actions: <Widget>[
                                   TextButton(
                                     onPressed:() {
