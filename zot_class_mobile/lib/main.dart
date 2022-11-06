@@ -55,7 +55,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final apiURL = "http://127.0.0.1:5000/";
+  final apiURL = "https://zot-class-mobile.herokuapp.com/";
   List<String> depList = ["Department"];
   List<String> termList = ["Term"];
   String term = "Term";
@@ -181,11 +181,6 @@ class _MyHomePageState extends State<MyHomePage> {
             if(dep != "Department" && term != "Term") {
               Navigator.push(context,
               MaterialPageRoute(builder: (context) => CoursesPage(department: dep, term: term, courseCode: myController1.text, courseName: myController2.text)));
-              // print(dep);
-              // print(term);
-              // print(myController1.text);
-              // print(myController2.text);
-              // print(myController1.text =="");
             }
             else {
               print("no");
