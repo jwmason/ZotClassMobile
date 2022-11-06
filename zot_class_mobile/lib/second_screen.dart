@@ -91,7 +91,7 @@ class _CoursesPageState extends State<CoursesPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Second Route'),
+        title: const Text('Courses'),
       ),
       body: Center(
         child: Column(
