@@ -95,20 +95,21 @@ class _CoursesPageState extends State<CoursesPage> {
       ),
       body: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            ElevatedButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            child: const Text('Go back!'),
-          ),
+          //   ElevatedButton(
+          //   onPressed: () {
+          //     Navigator.pop(context);
+          //   },
+          //   child: const Text('Go back!'),
+          // ),
  
             SizedBox(
               height: 600,
               child: 
               ListView.builder(
       
-                padding: const EdgeInsets.all(10),
+                padding: const EdgeInsets.all(15),
                 itemCount: course.length,
                 itemBuilder: (BuildContext context, int index) {
                   String codeString = "";
@@ -116,8 +117,11 @@ class _CoursesPageState extends State<CoursesPage> {
                     codeString += "Code:${code[index][n]}   Instructors:${instructors[index][n]}   Units:${units[index][n]}\n";
                   }
                   return Container(
-                    height: 100,
-                    color: Colors.blue,
+                    height: 80,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(15)),
+                      color: Colors.blue,
+                    ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
@@ -128,7 +132,7 @@ class _CoursesPageState extends State<CoursesPage> {
                             Text('Course: ${course[index]}',
                               style: const TextStyle(
                               color: Colors.black,
-                              fontWeight: FontWeight.bold,
+                             // fontWeight: FontWeight.bold,
                               fontSize: 20,
                             ),
                             ),
