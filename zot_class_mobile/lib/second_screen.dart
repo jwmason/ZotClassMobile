@@ -117,23 +117,23 @@ class _CoursesPageState extends State<CoursesPage> {
                     codeString += "Code:${code[index][n]}   Instructors:${instructors[index][n]}   Units:${units[index][n]}\n";
                   }
                   return Container(
-                    height: 80,
+                    height: 100,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(15)),
-                      color: Colors.blue,
                     ),
                     child: Row(
+                      
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         
                         Column(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            Text('Course: ${course[index]}',
+                            Text('${course[index]}',
                               style: const TextStyle(
                               color: Colors.black,
                              // fontWeight: FontWeight.bold,
-                              fontSize: 20,
+                              fontSize: 18,
                             ),
                             ),
                           ],
@@ -141,7 +141,7 @@ class _CoursesPageState extends State<CoursesPage> {
                   
                         OutlinedButton(
                           style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all(Colors.white24),
+                            backgroundColor: MaterialStateProperty.all(Colors.blue),
                             foregroundColor: MaterialStateProperty.all(Colors.black),
                           ),
                           child: const Text('info'),
