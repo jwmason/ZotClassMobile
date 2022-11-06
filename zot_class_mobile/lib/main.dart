@@ -111,6 +111,8 @@ class _MyHomePageState extends State<MyHomePage> {
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
+    double w = 300;
+    double h = 75;
     return Scaffold(
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
@@ -118,76 +120,103 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Center(
+      
         child: Column(
-
+          
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            const Text('\n\n'),
-            DropdownSearch<String>(
-                popupProps: const PopupProps.menu(
-                    showSelectedItems: true,
-                ),
-                items: depList,
-                selectedItem: "Department",
-                onChanged:(selectedItem) {
-                  setState(() {
-                    if(selectedItem != null) {
-                      dep = selectedItem;
-                    }
-                    else {
-                      dep = "Department";
-                    }
-                  });
-                }
+            SizedBox(
+              height: 100,
             ),
-            const Text('\n'),
-            DropdownSearch<String>(
-                popupProps: const PopupProps.menu(
-                    showSelectedItems: true,
-                ),
-                items: termList,
-                selectedItem: "Term",
-                onChanged: (selectedItem) {
-                  setState(() {
-                    if(selectedItem != null) {
-                      term = selectedItem;
-                    }
-                    else {
-                      term = "Term";
-                    }
-                  });
-                },
+            //const Text('\n\n'),
+            SizedBox(
+              width: w,
+              height: h,
+              child: DropdownSearch<String>(
+                  popupProps: const PopupProps.menu(
+                      showSelectedItems: true,
+                  ),
+                  items: depList,
+                  selectedItem: "Department",
+                  onChanged:(selectedItem) {
+                    setState(() {
+                      if(selectedItem != null) {
+                        dep = selectedItem;
+                      }
+                      else {
+                        dep = "Department";
+                      }
+                    });
+                  }
+              ),
             ),
-            const Text('\n'),
-            TextField(
-            decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              hintText: 'Course Code:',
+            //const Text('\n'),
+            SizedBox(
+              width: w,
+              height: h,
+              child: DropdownSearch<String>(
+                  popupProps: const PopupProps.menu(
+                      showSelectedItems: true,
+                  ),
+                  items: termList,
+                  selectedItem: "Term",
+                  onChanged: (selectedItem) {
+                    setState(() {
+                      if(selectedItem != null) {
+                        term = selectedItem;
+                      }
+                      else {
+                        term = "Term";
+                      }
+                    });
+                  },
+              ),
             ),
-            controller: myController1
+            //const Text('\n'),
+            SizedBox(
+              width: w,
+              height: h,
+              child: TextField(
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                hintText: 'Course Code:',
+              ),
+              controller: myController1
           ),
-          const Text('\n'),
-          TextField(
-            decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              hintText: 'Course Name:',
             ),
-            controller: myController2
+          //const Text('\n'),
+          SizedBox(
+            width: w,
+            height: h,
+            child: TextField(
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                hintText: 'Course Name:',
+              ),
+              controller: myController2
+            ),
           ),
-          const Text('\n'),
-          ElevatedButton(
-          style: raisedButtonStyle,
-          onPressed: (){
-            if(dep != "Department" && term != "Term") {
-              Navigator.push(context,
-              MaterialPageRoute(builder: (context) => CoursesPage(department: dep, term: term, courseCode: myController1.text, courseName: myController2.text)));
-            }
-            else {
-              print("no");
-            }
-          },
-          child: Text('Search', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
+          //const Text('\n'),
+          SizedBox(
+            height: 60,
+          ),
+          SizedBox(
+            height: 50,
+            width: 150,
+            child: ElevatedButton(
+            style: raisedButtonStyle,
+            onPressed: (){
+              if(dep != "Department" && term != "Term") {
+                Navigator.push(context,
+                MaterialPageRoute(builder: (context) => CoursesPage(department: dep, term: term, courseCode: myController1.text, courseName: myController2.text)));
+              }
+              else {
+                print("no");
+              }
+            },
+            child: Text('Search', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),),
         ),
+          ),
           ],
         ),
       ),
