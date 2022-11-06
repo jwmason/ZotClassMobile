@@ -1,38 +1,23 @@
 import 'package:flutter/material.dart';
 
-
-class FirstRoute extends StatelessWidget {
-  const FirstRoute({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('First Route'),
-      ),
-      body: Center(
-        child: ElevatedButton(
-          child: const Text('Open route'),
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const CoursesPage()),
-            );
-          },
-        ),
-      ),
-    );
-  }
-}
-
 class CoursesPage extends StatefulWidget {
-  const CoursesPage({super.key});
+  final String department;
+  final String term;
+  final String courseCode;
+  final String courseName;
+
+  const CoursesPage({super.key, required this.department, required this.term, required this.courseCode, required this.courseName});
 
   @override
-  State<CoursesPage> createState() => _CoursesPageState();
+  State<CoursesPage> createState() => _CoursesPageState(department: department, term: term, courseCode: courseCode, courseName: courseName);
 }
 
 class _CoursesPageState extends State<CoursesPage> {
+  final String department;
+  final String term;
+  final String courseCode;
+  final String courseName;
+  _CoursesPageState({required this.department, required this.term, required this.courseCode, required this.courseName});
   @override
   Widget build(BuildContext context) {
     //sample data
