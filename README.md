@@ -1,44 +1,76 @@
-# ZotClassMobile: Frontend
+# ZotClassMobile
 
-## TLDR:
+## Overview
 
-- **Challenge**: Many lack support and guidance in having UCI course information on their mobile devices.
-- **Solution**: ZotClassMobile, a tool that guides UCI collegiates in finding course information easily on their mobile devices.
-- **Features**:
-  - PeterPortal API information access.
-  - User-friendly Home Screen to search for course information.
-  - Apple and Android friendly
+ZotClassMobile is a mobile application designed to:
+- Provide easy access to UCI course information directly on mobile devices.
+- Offer a user-friendly interface that improves the experience of finding and viewing class details.
+- Ensure compatibility with both Apple and Android platforms for wide accessibility.
 
-## The Problem
+## Tech Stack
 
-We got our inspiration from ZotCourse, which is a popular class scheduler for students at UCI. We wanted create an application that is able to show class information for students. When a student tries to search up their classes in ZotCourse or WebReg on their mobile browser, the interface feels scrunched and uncomfortable. 
+- **Frontend**: 
+  - **Flutter**: Framework for building natively compiled applications for mobile from a single codebase.
+  - **Dart**: Programming language optimized for building mobile apps.
+  
+- **Backend**:
+  - **Flask**: Lightweight WSGI web application framework for Python.
+  - **PeterPortal API**: API for accessing UCI course information.
 
-## The Solution
+## Setup
 
-With Zot Class Mobile, students do not have to go into a browser and look up their classes from there. Instead, they can just have an app on their phone that just shows the class information.
+### Prerequisites
 
-## The Inspiration
+- Flutter SDK installed.
+- Access to the PeterPortal API for course data.
 
-We got our inspiration from ZotCourse, which is a popular class scheduler for students at UCI. We wanted create an application that is able to show class information for students.
+### Frontend Setup
 
-## How We Built It
+1. **Clone the repository**:
 
-- **Flutter**: We implemented the front end using Flutter. First, we divided the user interface of the two screens by having one page focus on the search inputs and the and dropdown menus, and then the other page focusing on displaying the searched courses through a scrollable list view. After creating the basic functionality for the front end, we implemented the back end using get requests to filter data from the back end API and display it properly.
+    ```bash
+    git clone https://github.com/yourusername/ZotClassMobile.git
+    ```
 
-- **Design**: After getting most of the functionality and displaying the correct data within the given amount of time, we did our best to work on UX/UI design.
+2. **Navigate to the project directory**:
+
+    ```bash
+    cd ZotClassMobile
+    ```
+
+3. **Install Dependencies**:
+
+    ```bash
+    flutter pub get
+    ```
+
+4. **Run the Application**:
+
+    ```bash
+    flutter run
+    ```
+
+The app will be deployed on your connected mobile device or emulator.
+
+## Features
+
+- **Course Information Access**: Retrieve and display UCI course details through the PeterPortal API.
+- **Search Functionality**: Allows users to search for courses by code or name with intuitive dropdown menus.
+- **Responsive UI**: Optimized for both iOS and Android devices to ensure a smooth and consistent user experience.
 
 ## Accomplishments
 
-1. **Integration**: Successfully linking the frontend UI to the json objects from the backend to create a comprehensive UCI course information app.
+- Successfully integrated the frontend UI with backend data, creating a seamless experience for users to access course information.
+- Enhanced user experience through careful attention to UI/UX design principles.
 
 ## What We Learned
 
-- Flutter.
-- The importance of a user-centered approach espeically using an API with lots of information.
+- Gained proficiency in Flutter and Dart for mobile application development.
+- Emphasized the importance of a user-centered design approach, particularly when interfacing with complex APIs.
 
-## What's Next for ZotClassMobile
+## Future Enhancements
 
-1. **Search Terms**: In the front end, we want to include features that allow users to search classes by their individual course code and course name. We also want to implement more information about each class that shows where the class is located, how many students are enrolled, and whether the class is open or waitlisted.
-2. **Improved UI**: We want to improve the user interface so the app looks and feels more appealing and smooth to the user.
-   
-ZotClassMobile stands as a testament to technological innovation in UCI collegiate support, emphasizing the need for ease-of-access and understanding in digital solutions.
+- **Advanced Search Options**: Include features for filtering classes by various criteria such as course location, enrollment status, and availability.
+- **Improved User Interface**: Further refine the UI to enhance visual appeal and user engagement.
+
+ZotClassMobile demonstrates our commitment to improving accessibility and usability for UCI students, providing them with a powerful tool to manage their academic information on the go.
